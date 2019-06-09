@@ -102,8 +102,7 @@ confMatrix_test$overall[1]
 ```
 
 ## Prediction with Random Forests
-Now I'll build a Random Forests model with 5-folds cross validation and look at its in-sample and out-sample errors and accuracy.
-```{r , cache=TRUE}
+
 library(randomForest)
 tr_control <- trainControl(method="cv", number = 5)
 model_forest <- train(classe ~ ., data = train, method="rf", trControl = tr_control)
