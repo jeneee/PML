@@ -4,12 +4,8 @@ date: "20 de junio de 2019"
 output: html_document
 ---
 ##introducción
-```{r}
-
-```
-
 Este proyecto utiliza un comjunto de  datos de ejercicios de levantamiento de pesas para desarrollar y probar un modelo de reconocimiento/predicción de actividad humana. En particular, el objetivo de este proyecto es reconocer y/0 predecir la manera en que los usuarios de un conjunto de sensores corporales hicieron el ejercicio de levantamiento de pesas. Procesará los datos de acelerómetros en la banda, antebrazo, brazo y Dumbell de 6 participantes que realizaron barbell ascensores correctamente y de forma incorrecta de 5 maneras diferentes.
-```
+```{r}
 library(knitr)
 library(caret)
 library(ggplot2)
