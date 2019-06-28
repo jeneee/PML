@@ -16,12 +16,12 @@ library(randomForest)
 library(corrplot)
 library(doParallel)
 library(dplyr)
-library(e1071)
+#library(e1071)
 ##install.packages("dplyr")
 ##install.packages("lubridate")
 ```
 
-# leendo  los datos
+# leyendo  los datos
 ```{r}
 training <- read.csv("C:/r/Machear learning/Proyecto a enviar/pml-training.csv",  na.strings=c("NA","#DIV/0!",""), header = TRUE)
 testing <- read.csv("C:/r/Machear learning/Proyecto a enviar/pml-testing.csv",  na.strings=c("NA","#DIV/0!",""), header = TRUE)
@@ -32,7 +32,7 @@ str(training)
 ```
 
 #  Limpieza de los datos
-elimanado los espacios en blanco y los NA
+Elimanado los espacios en blanco y los NA
 
 ```{r}
 training<- training[, colSums(is.na(training)) == 0]
@@ -50,10 +50,8 @@ dim(testing)
 #borrando las site primeras columnas
 training1 <- training[, -c(1:7)]
 dim(training1)
-
 testing1 <- testing[, -c(1:7)]
 dim(testing1)
-
 ```
 
 ## division de los datos 
@@ -61,7 +59,7 @@ dim(testing1)
 Aquí divido la data  en dos subgrupos: entrenamiento (80%) y pruebas  (20%) conjuntos de datos.
 ```{r partition, cache=TRUE}
 library(caret)
-library(lubridate)
+#library(lubridate)
  set.seed (12345)
 indexTrain <- createDataPartition(y = training1$classe, p=0.8, list = FALSE)
 train <- training1[indexTrain,]
@@ -75,7 +73,6 @@ Aquí construyo un modelo de árbol con una validación cruzada de 5 pliegues
 
 ```{r}
 library(dplyr)
-
 tr_control <- trainControl(method="cv", number = 5)
 model_tree <- train(classe ~ ., data = train, method = "rpart", trControl = tr_control)
 fancyRpartPlot(model_tree$finalModel)
@@ -98,12 +95,10 @@ library(randomForest)
 tr_control <- trainControl(method="cv", number = 5)
 model_forest <- train(classe ~ ., data = train, method="rf", trControl = tr_control)
 model_forest$finalModel
-
 pred_train <- predict(model_forest, newdata = train)
 confMatrix_train <- confusionMatrix(train$classe, pred_train)
 confMatrix_train$table
 confMatrix_train$overall[1]
-
 pred_test <- predict(model_forest, newdata = test)
 confMatrix_test <- confusionMatrix(test$classe, pred_test)
 confMatrix_test$table
@@ -130,7 +125,6 @@ CM
 ```
 # plot matrix results
 ```{r}
-
 plot(CM$table, col = CM$byClass, 
      main = paste("Precision=", round(CM$overall['Accuracy'], 4)))
 ```
