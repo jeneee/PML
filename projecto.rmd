@@ -131,5 +131,5 @@ plot(CM$table, col = CM$byClass,
 
 
 ## Conclusión
-El árbol de clasificación El resulatodo era muy pobare  debido a los usos de muchas variables
+El árbol de clasificación El resultodo es muy pobare  debido a los usos de muchas variables
 El Random Forests es el mas optimo
