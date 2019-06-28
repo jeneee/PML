@@ -113,13 +113,12 @@ confMatrix_test <- confusionMatrix(test$classe, pred_test)
 confMatrix_test$table
 confMatrix_test$overall[1]
 ```
-la precisión   es 0.9913332
+la precisión del modelo forest   es 0.9913332
 
 #Boosted Model
 
 
 ```{r}
-# model fit
 set.seed(12345)
 Boosted <- trainControl(method = "repeatedcv", number = 5, repeats = 1)
 model  <- train(classe ~ ., data=train, method = "gbm",
@@ -129,7 +128,7 @@ model$finalModel
 
 ```{r}
 # prediction on Test dataset
-pred <- predict(GBM, newdata=test)
+pred <- predict(model, newdata=test)
 CM <- confusionMatrix(pred, test$classe)
 CM
 ```
